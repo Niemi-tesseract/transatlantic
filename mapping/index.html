@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Quick Start - Leaflet</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+    <script src="../nattrackivac2/tracksE.map"></script>
+
+
+</head>
+
+<body>
+
+
+
+    <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <script>
+        var geojsonFeature = [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-15, 54],
+                                [-15, 51],
+                                [-8, 51],
+                                [-8, 45],
+                                [-13, 45],
+                                [-30, 45],
+                                [-30, 61],
+                                [-10, 61],
+                                [-10, 54.6],
+                                [-15, 54]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 248,
+                    "fid": 247,
+                    "supp_regio": "NAT",
+                    "remarks3": " ",
+                    "remarks2": " ",
+                    "remarks": " ",
+                    "historic": " ",
+                    "nom_comp": "SHANWICK OCEANIC",
+                    "resp": "PARIS",
+                    "icaocode": "EGGX",
+                    "ulc": "LC",
+                    "lower": "L",
+                    "upper": " ",
+                    "kind": "FIR",
+                    "region": "NAT",
+                    "firname": "FIR SHANWICK OCEANIC",
+                    "perimekm": 8116.063,
+                    "areasqkm": 2358699.593,
+                    "centlat": 52.82830635,
+                    "centlong": -19.97561828
+                }
+            },
+
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-54, 53.000002],
+                                [-51, 49.000002],
+                                [-51, 45.000002],
+                                [-53, 45.000002],
+                                [-53.655355, 44.88891],
+                                [-54.086952, 44.813456],
+                                [-54.539274, 44.732414],
+                                [-55.043773, 44.639628],
+                                [-55.533007, 44.547233],
+                                [-56.051666, 44.446667],
+                                [-56.473611, 45.611944],
+                                [-57.66, 46.280279],
+                                [-58.605833, 46.795],
+                                [-59.271389, 47.146391],
+                                [-59.803333, 47.420279],
+                                [-60.424444, 47.735277],
+                                [-61.240833, 48.153334],
+                                [-61.816666, 48.413336],
+                                [-62, 48.500002],
+                                [-61, 49.300001],
+                                [-61, 49.533335],
+                                [-60.295839, 49.877592],
+                                [-58, 51],
+                                [-57, 51.283333],
+                                [-57, 51.735],
+                                [-58.142778, 52.196389],
+                                [-58.393141, 52.094749],
+                                [-58.595123, 52.012024],
+                                [-58.852108, 51.905833],
+                                [-59.137209, 51.786763],
+                                [-59.5, 51.633146],
+                                [-59.5, 51.333333],
+                                [-60, 50.833333],
+                                [-60.836119, 50.837801],
+                                [-61.451818, 50.83726],
+                                [-62.083332, 50.833334],
+                                [-64, 51.416666],
+                                [-64.916666, 53.700003],
+                                [-65.333332, 54.416666],
+                                [-65.083332, 55.083334],
+                                [-64, 55.355555],
+                                [-64, 57.550001],
+                                [-60.351139, 58.471121],
+                                [-59, 57.000002],
+                                [-54, 53.000002]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 116,
+                    "fid": 115,
+                    "supp_regio": "NAM",
+                    "remarks3": " ",
+                    "remarks2": " ",
+                    "remarks": " ",
+                    "historic": " ",
+                    "nom_comp": "GANDER DOMESTIC",
+                    "resp": "MEXICO",
+                    "icaocode": "CZQX",
+                    "ulc": "LC",
+                    "lower": "L",
+                    "upper": " ",
+                    "kind": "FIR",
+                    "region": "NAM",
+                    "firname": "FIR GANDER DOMESTIC",
+                    "perimekm": 5280.899,
+                    "areasqkm": 822375.649,
+                    "centlat": 51.26362037,
+                    "centlong": -57.85334952
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-8, 51.000002],
+                                [-15, 51.000002],
+                                [-15, 54.000002],
+                                [-10, 54.6],
+                                [-9, 54.746702],
+                                [-8.25, 55.333334],
+                                [-7.3333, 55.41667],
+                                [-6.933329, 55.33],
+                                [-8.1667, 54.416662],
+                                [-5.5, 53.916666],
+                                [-5.5, 52.333334],
+                                [-5.500026, 52.33332],
+                                [-5.660593, 52.251592],
+                                [-5.820595, 52.169632],
+                                [-5.98001, 52.087454],
+                                [-6.138839, 52.00506],
+                                [-6.297086, 51.922452],
+                                [-6.454751, 51.839631],
+                                [-6.611839, 51.756598],
+                                [-6.768351, 51.673355],
+                                [-6.924289, 51.589903],
+                                [-7.079656, 51.506243],
+                                [-7.234454, 51.422377],
+                                [-7.388686, 51.338306],
+                                [-7.542355, 51.254031],
+                                [-7.695461, 51.169555],
+                                [-7.848009, 51.084877],
+                                [-7.999924, 51.000042],
+                                [-8, 51.000002]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 26,
+                    "fid": 25,
+                    "supp_regio": "EUR",
+                    "remarks3": " ",
+                    "remarks2": " ",
+                    "remarks": " ",
+                    "historic": " ",
+                    "nom_comp": "SHANNON",
+                    "resp": "PARIS",
+                    "icaocode": "EISN",
+                    "ulc": "UC",
+                    "lower": " ",
+                    "upper": "U",
+                    "kind": "UIR",
+                    "region": "EUR",
+                    "firname": "UIR SHANNON",
+                    "perimekm": 2738.255,
+                    "areasqkm": 231613.945,
+                    "centlat": 52.80785629,
+                    "centlong": -10.37048823
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-63, 61.000002],
+                                [-63, 64.000002],
+                                [-60, 65.000002],
+                                [-57.75, 65.000002],
+                                [-55.665042, 63.500131],
+                                [-54.559202, 62.660135],
+                                [-53.793678, 62.043948],
+                                [-52.968788, 61.345815],
+                                [-52.265894, 60.721163],
+                                [-51.424848, 59.935307],
+                                [-50.701328, 59.223572],
+                                [-50, 58.500002],
+                                [-43, 58.500002],
+                                [-42.170229, 59.682235],
+                                [-41.463238, 60.62384],
+                                [-40.77805, 61.483393],
+                                [-40.121602, 62.261562],
+                                [-39.501229, 62.959054],
+                                [-39, 63.500002],
+                                [-37.642117, 63.184428],
+                                [-36.316008, 62.856651],
+                                [-35.162233, 62.555024],
+                                [-34.171941, 62.283431],
+                                [-33.0621, 61.96455],
+                                [-32.110057, 61.678332],
+                                [-31.043619, 61.343269],
+                                [-30, 61.000002],
+                                [-30, 45.000002],
+                                [-40, 45.000002],
+                                [-46.836735, 45.000002],
+                                [-51, 45.000002],
+                                [-51, 49.000002],
+                                [-54, 53.000002],
+                                [-59, 57.000002],
+                                [-60.351139, 58.471121],
+                                [-60.487708, 58.61254],
+                                [-60.582963, 58.710427],
+                                [-60.685013, 58.814587],
+                                [-60.812836, 58.944082],
+                                [-60.818015, 58.949311],
+                                [-60.857506, 58.989082],
+                                [-60.893471, 59.025208],
+                                [-60.897088, 59.028841],
+                                [-60.91487, 59.046656],
+                                [-60.936762, 59.068588],
+                                [-60.976528, 59.108322],
+                                [-61.016386, 59.148044],
+                                [-61.056336, 59.187753],
+                                [-61.096379, 59.22745],
+                                [-61.136515, 59.267134],
+                                [-61.176744, 59.306806],
+                                [-61.217068, 59.346464],
+                                [-61.257485, 59.386111],
+                                [-61.297997, 59.425744],
+                                [-61.338604, 59.465364],
+                                [-61.379305, 59.504972],
+                                [-61.420103, 59.544566],
+                                [-61.460996, 59.584148],
+                                [-61.501985, 59.623717],
+                                [-61.543071, 59.663272],
+                                [-61.578029, 59.696838],
+                                [-61.584254, 59.702815],
+                                [-61.587842, 59.70625],
+                                [-61.625534, 59.742344],
+                                [-61.666911, 59.78186],
+                                [-61.708386, 59.821362],
+                                [-61.74996, 59.860852],
+                                [-61.791632, 59.900328],
+                                [-61.833404, 59.93979],
+                                [-61.875274, 59.979239],
+                                [-61.917245, 60.018674],
+                                [-61.959315, 60.058096],
+                                [-62.001486, 60.097505],
+                                [-62.043758, 60.136899],
+                                [-62.056248, 60.148508],
+                                [-62.086131, 60.17628],
+                                [-62.128605, 60.215647],
+                                [-62.171182, 60.255],
+                                [-62.17177, 60.255542],
+                                [-62.21386, 60.294339],
+                                [-62.256641, 60.333664],
+                                [-62.299526, 60.372975],
+                                [-62.342514, 60.412272],
+                                [-62.385605, 60.451555],
+                                [-62.428801, 60.490824],
+                                [-62.472101, 60.530078],
+                                [-62.515506, 60.569319],
+                                [-62.530946, 60.583238],
+                                [-62.559017, 60.608544],
+                                [-62.594811, 60.640724],
+                                [-62.602633, 60.647756],
+                                [-62.646355, 60.686953],
+                                [-62.690184, 60.726135],
+                                [-62.73412, 60.765303],
+                                [-62.778163, 60.804456],
+                                [-62.822313, 60.843594],
+                                [-62.866572, 60.882718],
+                                [-62.910939, 60.921827],
+                                [-62.955415, 60.960921],
+                                [-62.999841, 60.999861],
+                                [-63, 61.000002]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 36,
+                    "fid": 35,
+                    "supp_regio": "NAT",
+                    "remarks3": "TO BE APPROUVED BY COUNCIL",
+                    "remarks2": " ",
+                    "remarks": " ",
+                    "historic": " ",
+                    "nom_comp": "GANDER OCEANIC",
+                    "resp": "PARIS",
+                    "icaocode": "CZQX",
+                    "ulc": "ULC",
+                    "lower": "L",
+                    "upper": "U",
+                    "kind": "FIR",
+                    "region": "NAT",
+                    "firname": "FIR GANDER OCEANIC",
+                    "perimekm": 9243.991,
+                    "areasqkm": 3047451.796,
+                    "centlat": 54.22762923,
+                    "centlong": -43.58620309
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-15, 57],
+                                [-15, 54],
+                                [-10, 54.6],
+                                [-10, 57]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 226,
+                    "fid": 1400,
+                    "supp_regio": "NAT",
+                    "nom_comp": "NOTA",
+                    "resp": "EISN",
+                    "icaocode": "NOTA",
+                    "kind": "DELEGATION",
+                    "region": "NAT",
+                    "firname": "North Oceanic Transition Zone"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-15, 51],
+                                [-15, 49],
+                                [-8.75, 48.5],
+                                [-8, 48.5],
+                                [-8, 51]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 226,
+                    "fid": 1400,
+                    "supp_regio": "NAT",
+                    "nom_comp": "SOTA",
+                    "resp": "EISN",
+                    "icaocode": "SOTA",
+                    "kind": "DELEGATION",
+                    "region": "NAT",
+                    "firname": "South Oceanic Transition Zone"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-8.75, 48.5],
+                                [-8, 48.5],
+                                [-8, 45],
+                                [-8.75, 45]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 226,
+                    "fid": 1400,
+                    "supp_regio": "NAT",
+                    "nom_comp": "BOTA",
+                    "resp": "LFBB",
+                    "icaocode": "BOTA",
+                    "kind": "DELEGATION",
+                    "region": "NAT",
+                    "firname": "Brest Oceanic Transition Zone"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPolygon",
+                    "coordinates": [
+                        [
+                            [
+                                [-54, 53],
+                                [-51, 49],
+                                [-51, 45],
+                                [-50, 45],
+                                [-50, 50]
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "cartodb_id": 226,
+                    "fid": 1400,
+                    "supp_regio": "NAT",
+                    "nom_comp": "MOTA",
+                    "resp": "CZQXD",
+                    "icaocode": "MOTA",
+                    "kind": "DELEGATION",
+                    "region": "NAT",
+                    "firname": "Moncton Oceanic Transition Zone"
+                }
+            }
+        ];
+
+
+        var mymap = L.map('mapid').setView([54, -32], 3);
+        L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 20,
+            ext: 'png'
+        }).addTo(mymap);
+
+        var myLayer = L.geoJSON().addTo(mymap);
+        myLayer.addData(geojsonFeature);
+        var eastTracksMap = L.geoJSON().addTo(mymap);
+        eastTracksMap.addData(eastTracks);
+
+
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(mymap);
+        }
+
+        mymap.on('click', onMapClick);
+
+    </script>
+
+
+
+</body>
+
+</html>
