@@ -1,0 +1,22 @@
+{
+  "name": "nat2ivac2",
+  "version": "0.0.0",
+  "description": "Downloads current NAT tracks and converts them into an IVAC2 xml file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nat",
+    "track",
+    "ivao",
+    "ivac2",
+    "xml"
+  ],
+  "author": "Tim Berry",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}
