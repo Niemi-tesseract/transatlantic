@@ -131,6 +131,94 @@ request(url)
                 return console.error(err);
             }
         });
+
+
+        for (var i = 0; i < westbound.length; i++) {
+            if (westbound[i].charAt(1) === ' ') {
+                tracksW.push(westbound[i].split(' '));
+            }
+        }
+
+        for (var i = 0; i < tracksW.length; i++) {
+
+
+            outputW = outputW + '\n{' +
+                `"properties": {` + '\n"Track": "' + tracksW[i][0] + '",\n' + `"trackType": "NAT",
+`;
+            outputW = outputW + '"Waypoints": [';
+
+            for (var j = 1; j < tracksW[i].length; j++) {
+
+                if (j == ((tracksW[i].length) - 1)) {
+                    outputW = outputW + '["' + tracksW[i][j].replace('/', '') + '"]]';
+                } else {
+                    outputW = outputW + '["' + tracksW[i][j].replace('/', '') + '"],';
+                }
+
+            }
+
+            outputW = outputW + `
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [`
+            //loop through all waypoints
+            for (var j = 1; j < tracksW[i].length; j++) {
+                //check if coordinate or waypoint
+                if (isNaN(parseInt(tracksW[i][j]))) {
+                    var resultObject = search(tracksW[i][j], config.fixes);
+                    //check if last in track
+                    if (j == ((tracksW[i].length) - 1)) {
+                        //check if in database
+                        if (resultObject !== undefined) {
+                            outputW = outputW + "[" + resultObject + "]]";
+                            console.log(tracksW[i][j]);
+                        } else {
+                            outputW = outputW.substring(0, (outputW.length - 1)) + "]";
+                        }
+                    } else {
+                        if (resultObject !== undefined) {
+                            outputW = outputW + "[" + resultObject + "],";
+                            console.log(tracksW[i][j]);
+                        }
+                    }
+                    /*
+                    // used to show if waypoint is included in dataset
+                    // needed due GEOJSON format strictness
+                    if (resultObject  !== undefined) {
+                    outputW = outputW + " ["+ resultObject+"], ";
+                    console.log(tracksW[i][j]);
+                    }
+                    */
+
+                } else {
+
+                    var coordinate1 = tracksW[i][j].replace('/', '')
+                    //console.log(coordinate11.length)
+                    if (tracksW[i][j].replace('/', '').length > 4 && tracksW[i][j].replace('/', '').substring(2, 4) == "30") {
+                        var resultObjectNorthing = parseInt(coordinate11.substring(0, 2)) + 0.5;
+                        var resultObjectWesting = coordinate11.substring(4, 6)
+                    } else {
+                        var resultObjectNorthing = coordinate11.substring(0, 2)
+                        var resultObjectWesting = coordinate11.substring(2, 4)
+                    }
+                    outputW = outputW + "[-" + resultObjectWesting + "," + resultObjectNorthing + "],"
+                    //console.log(" [" + resultObjectWesting + "," + resultObjectNorthing + "],");
+                }
+
+            }
+            outputW = outputW + `}},`
+
+        }
+        outputW = outputW.substring(0, (outputW.length - 1)) + "]";
+
+        fs.writeFile('tracksW.map', outputW, function (err) {
+            if (err) {
+                return console.error(err);
+            }
+        });
+
+
     })
     .catch(function (err) {
         console.log(err);
