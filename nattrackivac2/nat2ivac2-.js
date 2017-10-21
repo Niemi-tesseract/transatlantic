@@ -2,7 +2,7 @@ var fs = require('fs');
 var request = require('request-promise');
 
 var url = 'https://pilotweb.nas.faa.gov/common/nat.html';
-var config = require('config.js')
+var config = require('./config.js');
 var tracksE = []
 var tracksW = []
 var outputW = `var westTracks = [`
@@ -19,7 +19,7 @@ function search(fix, fixesList) {
 
 request(url)
     .then((data) => {
-        console.log(data)
+        //console.log(data)
         /*if (data.charAt(8) == "C") {
             var westbound = (data.substring(0, data.indexOf("CZQXZQZX"))).split(/\n/);
             var eastbound = (data.substring(data.indexOf("CZQXZQZX"))).split(/\n/);
@@ -31,9 +31,20 @@ request(url)
         }*/
 
 
-        var westbound = (data.substring(0, data.indexOf("CZQXZQZX"))).split(/\n/);
-        var eastbound = (data.substring(data.indexOf("CZQXZQZX"))).split(/\n/);
-        console.log(eastbound)
+
+        var modulatedData = data.replace(/(\r\n|\n|\r)/gm, "%$");
+
+
+        var westboundFull = (modulatedData.match(/EGGXZOZX([\s\S]*?)<\/tr>/g));
+        var westbound = westboundFull[0].split(/\%\$/g);
+
+        // remember to change to westbound after testing
+        var eastboundFull = (modulatedData.match(/EGGXZOZX([\s\S]*?)<\/tr>/g));
+        var eastbound = eastboundFull[0].split(/\%\$/g);
+
+        //var westbound = (data.substring(0, data.indexOf("CZQXZQZX"))).split(/\n/);
+        //var eastbound = (data.substring(data.indexOf("CZQXZQZX"))).split(/\n/);
+
 
         for (var i = 0; i < eastbound.length; i++) {
             if (eastbound[i].charAt(1) === ' ') {
@@ -65,7 +76,7 @@ request(url)
     "geometry": {
         "type": "LineString",
         "coordinates": [`
-
+            //loop through all waypoints
             for (var j = 1; j < tracksE[i].length; j++) {
                 //check if coordinate or waypoint
                 if (isNaN(parseInt(tracksE[i][j]))) {
@@ -77,12 +88,11 @@ request(url)
                             outputE = outputE + "[" + resultObject + "]]";
                             console.log(tracksE[i][j]);
                         } else {
-                            outputE = outputE.substring(0, (outputE.length - 2)) +
-                                "]"
+                            outputE = outputE.substring(0, (outputE.length - 1)) + "]";
                         }
                     } else {
                         if (resultObject !== undefined) {
-                            outputE = outputE + " [" + resultObject + "], ";
+                            outputE = outputE + "[" + resultObject + "],";
                             console.log(tracksE[i][j]);
                         }
                     }
@@ -106,7 +116,7 @@ request(url)
                         var resultObjectNorthing = coordinate11.substring(0, 2)
                         var resultObjectWesting = coordinate11.substring(2, 4)
                     }
-                    outputE = outputE + " [-" + resultObjectWesting + "," + resultObjectNorthing + "],"
+                    outputE = outputE + "[-" + resultObjectWesting + "," + resultObjectNorthing + "],"
                     //console.log(" [" + resultObjectWesting + "," + resultObjectNorthing + "],");
                 }
 
@@ -114,7 +124,7 @@ request(url)
             outputE = outputE + `}},`
 
         }
-        outputE = outputE + `]`;
+        outputE = outputE.substring(0, (outputE.length - 1)) + "]";
 
         fs.writeFile('tracksE.map', outputE, function (err) {
             if (err) {
