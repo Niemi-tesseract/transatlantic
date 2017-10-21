@@ -1,0 +1,73 @@
+var eastTracks = [
+{"properties": {
+"Track": "R",
+"trackType": "NAT",
+"Waypoints": [["JOOPY"],["4950"],["5140"],["5330"],["5420"],["DOGAL"],["BEXET"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-52,48.5],[-50,49],[-40,51],[-30,53],[-20,54],[-15,54],[-14,54]]}},
+{"properties": {
+"Track": "S",
+"trackType": "NAT",
+"Waypoints": [["NICSO"],["4850"],["5040"],["5230"],["5320"],["MALOT"],["GISTI"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-52,47.5],[-50,48],[-40,50],[-30,52],[-20,53],[-15,53],[-14,53]]}},
+{"properties": {
+"Track": "T",
+"trackType": "NAT",
+"Waypoints": [["PORTI"],["4750"],["4940"],["5130"],["5220"],["LIMRI"],["XETBO"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-52,46.5],[-50,47],[-40,49],[-30,51],[-20,52],[-15,52],[-14,52]]}},
+{"properties": {
+"Track": "U",
+"trackType": "NAT",
+"Waypoints": [["RELIC"],["463050"],["483040"],["503030"],["513020"],["ADARA"],["LEKVA"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-52,46],[-50,46.5],[-40,48.5],[-30,50.5],[-20,51.5],[-15,51.5],[-14,51.5]]}},
+{"properties": {
+"Track": "V",
+"trackType": "NAT",
+"Waypoints": [["SUPRY"],["4650"],["4840"],["5030"],["5120"],["DINIM"],["ELSOX"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-52,45.5],[-50,46],[-40,48],[-30,50],[-20,51],[-15,51],[-14,51]]}},
+{"properties": {
+"Track": "W",
+"trackType": "NAT",
+"Waypoints": [["RAFIN"],["4550"],["4740"],["4930"],["5020"],["SOMAX"],["ATSUR"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-51.8,44.9],[-50,45],[-40,47],[-30,49],[-20,50],[-15,50],[-14,50]]}},
+{"properties": {
+"Track": "X",
+"trackType": "NAT",
+"Waypoints": [["DOVEY"],["4260"],["4450"],["4640"],["4830"],["4920"],["BEDRA"],["NERTU"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-67,41.1],[-60,42],[-50,44],[-40,46],[-30,48],[-20,49],[-15,49],[-14,49]]}},
+{"properties": {
+"Track": "Y",
+"trackType": "NAT",
+"Waypoints": [["JOBOC"],["4160"],["4250"],["4440"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-67,40.1],[-60,41],[-50,42],[-40,44]]}},
+{"properties": {
+"Track": "Z",
+"trackType": "NAT",
+"Waypoints": [["SOORY"],["4350"],["4540"],["4730"],["4820"],["4815"],["OMOKO"],["GUNSO"]]
+},"type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[-60.3,38.5],[-50,43],[-40,45],[-30,47],[-20,48],[-15,48],[-12,48.84],[-11.8,49]]}}]

@@ -35,7 +35,7 @@ request(url)
 
         var modulatedData = data.replace(/(\r\n|\n|\r)/gm, "%$");
 
-        var eastboundFull = (modulatedData.match(/CZQXZOZX([\s\S]*?)<\/tr>/g));
+        var eastboundFull = (modulatedData.match(/CZQXZQZX([\s\S]*?)<\/tr>/g));
         var westboundFull = (modulatedData.match(/EGGXZOZX([\s\S]*?)<\/tr>/g));
 
         if (eastboundFull != null) {
@@ -82,13 +82,16 @@ request(url)
                             //check if in database
                             if (resultObject !== undefined) {
                                 outputE = outputE + "[" + resultObject + "]]";
-                                console.log(tracksE[i][j]);
+
                             } else {
                                 outputE = outputE.substring(0, (outputE.length - 1)) + "]";
+                                console.log(tracksE[i][j]);
                             }
                         } else {
                             if (resultObject !== undefined) {
                                 outputE = outputE + "[" + resultObject + "],";
+
+                            } else {
                                 console.log(tracksE[i][j]);
                             }
                         }
@@ -112,7 +115,12 @@ request(url)
                             var resultObjectNorthing = coordinate11.substring(0, 2)
                             var resultObjectWesting = coordinate11.substring(2, 4)
                         }
-                        outputE = outputE + "[-" + resultObjectWesting + "," + resultObjectNorthing + "],"
+                        if (j == ((tracksE[i].length) - 1)) {
+                            outputE = outputE + "[-" + resultObjectWesting + "," + resultObjectNorthing + "]]"
+                        } else {
+
+                            outputE = outputE + "[-" + resultObjectWesting + "," + resultObjectNorthing + "],"
+                        }
                         //console.log(" [" + resultObjectWesting + "," + resultObjectNorthing + "],");
                     }
 
@@ -153,7 +161,7 @@ request(url)
                 for (var j = 1; j < tracksW[i].length; j++) {
 
                     if (j == ((tracksW[i].length) - 1)) {
-                        outputW = outputW + '["' + tracksW[i][j].replace('/', '') + '"]]';
+                        outputW = outputW + '["' + tracksW[i][j].replace('/', '') + '"]],';
                     } else {
                         outputW = outputW + '["' + tracksW[i][j].replace('/', '') + '"],';
                     }
@@ -161,7 +169,9 @@ request(url)
                 }
 
                 outputW = outputW + `
-},"type": "Feature",
+ "geodesic": "true",
+        "geodesic_steps": 50,
+        "geodesic_wrap": "true"},"type": "Feature",
     "geometry": {
         "type": "LineString",
         "coordinates": [`
@@ -175,13 +185,16 @@ request(url)
                             //check if in database
                             if (resultObject !== undefined) {
                                 outputW = outputW + "[" + resultObject + "]]";
-                                console.log(tracksW[i][j]);
+                                //console.log(tracksW[i][j]);
                             } else {
                                 outputW = outputW.substring(0, (outputW.length - 1)) + "]";
+                                console.log(tracksW[i][j]);
                             }
                         } else {
                             if (resultObject !== undefined) {
                                 outputW = outputW + "[" + resultObject + "],";
+                                //  console.log(tracksW[i][j]);
+                            } else {
                                 console.log(tracksW[i][j]);
                             }
                         }

@@ -12,8 +12,9 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
-    <script src="../nattrackivac2/tracksE.map"></script>
-    <script src="../nattrackivac2/tracksW.map"></script>
+    <script src="https://cdn.rawgit.com/henrythasler/Leaflet.Geodesic/master/Leaflet.Geodesic.js"></script>
+    <script src="../nattrackivac2/tracksE.js"></script>
+    <script src="../nattrackivac2/tracksW.js"></script>
 
 
 </head>
@@ -498,8 +499,47 @@
                 .setContent("You clicked the map at " + e.latlng.toString())
                 .openOn(map);
         }
-
+        var nexrad = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+            layers: 'nexrad-n0r-900913',
+            format: 'image/png',
+            transparent: true,
+            attribution: "Weather data © 2012 IEM Nexrad"
+        }).addTo(map);
         map.on('click', onMapClick);
+
+
+        var geojson = {
+            "properties": {
+                "Track": "A",
+                "trackType": "NAT",
+                "Waypoints": [
+                    ["BALIX"],
+                    ["6120"],
+                    ["6230"],
+                    ["6240"],
+                    ["6050"],
+                    ["URTAK"]
+                ],
+                "geodesic": "true",
+                "geodesic_steps": 50,
+                "geodesic_wrap": "true"
+            },
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [-10, 59],
+                    [-20, 61],
+                    [-30, 62],
+                    [-40, 62],
+                    [-50, 60],
+                    [-58, 58.5]
+                ]
+            }
+        }
+
+        var layer_geojson = L.geoJson(geojson);
+        layer_geojson.addTo(map);
 
     </script>
 
