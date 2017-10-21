@@ -1,4 +1,13 @@
 module.exports = {
+    map: {
+        colors: {
+            eastTracks: "#FF00FF",
+            westTracks: "#0000FF",
+            firs: "#FFFF00",
+            otas: "#FF0000",
+        }
+
+    },
     fixes: [
         {
             "name": "RIKAL",

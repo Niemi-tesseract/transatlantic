@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
     <script src="../nattrackivac2/tracksE.map"></script>
+    <script src="../nattrackivac2/tracksW.map"></script>
 
 
 </head>
@@ -23,7 +24,7 @@
 
     <div id="mapid" style="width: 600px; height: 400px;"></div>
     <script>
-        var geojsonFeature = [{
+        var firData = [{
                 "type": "Feature",
                 "geometry": {
                     "type": "MultiPolygon",
@@ -458,21 +459,36 @@
         ];
 
 
-        var mymap = L.map('mapid').setView([54, -32], 3);
+        var map = L.map('mapid').setView([54, -32], 3);
         L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.{ext}', {
             attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             subdomains: 'abcd',
             minZoom: 0,
             maxZoom: 20,
             ext: 'png'
-        }).addTo(mymap);
+        }).addTo(map);
 
-        var myLayer = L.geoJSON().addTo(mymap);
-        myLayer.addData(geojsonFeature);
-        var eastTracksMap = L.geoJSON().addTo(mymap);
-        eastTracksMap.addData(eastTracks);
-
-
+        L.geoJSON(firData, {
+            style: {
+                "weight": 1,
+                "opacity": 0.65,
+                "color": "red"
+            }
+        }).addTo(map);
+        L.geoJSON(eastTracks, {
+            style: {
+                "weight": 2,
+                "opacity": 1,
+                "color": "lime"
+            }
+        }).addTo(map);
+        L.geoJSON(westTracks, {
+            style: {
+                "weight": 2,
+                "opacity": 1,
+                "color": "cyan"
+            }
+        }).addTo(map);
 
         var popup = L.popup();
 
@@ -480,10 +496,10 @@
             popup
                 .setLatLng(e.latlng)
                 .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(mymap);
+                .openOn(map);
         }
 
-        mymap.on('click', onMapClick);
+        map.on('click', onMapClick);
 
     </script>
 
